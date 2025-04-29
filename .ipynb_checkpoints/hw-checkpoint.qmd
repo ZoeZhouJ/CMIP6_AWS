@@ -414,6 +414,43 @@ ax.legend()
 plt.show()
 ```
 
+
+```{python}
+# get slope for CanESM5 SSP126 from 2015-2100
+model_data = can_annual_mean_126
+new_data = model_data.sel(year=slice(2015, 2100))
+slope_can_126, intercept_can_126, r_value_can_126, p_value_can_126, stderr_can_126 = stats.linregress(new_data.year.values, new_data.values)
+
+print(f"CanESM5 SSP 126: Period Slope (2015-2100): {slope_can_126:.4f}, Standard Error: {stderr_can_126:.4f}, P_value: {p_value_can_126:.4f}")
+```
+
+```{python}
+# get slope for CanESM5 SSP370 from 2015-2100
+model_data = can_annual_mean_370
+new_data = model_data.sel(year=slice(2015, 2100))
+slope_can_126, intercept_can_126, r_value_can_126, p_value_can_126, stderr_can_126 = stats.linregress(new_data.year.values, new_data.values)
+
+print(f"CanESM5 SSP 370: Period Slope (2015-2100): {slope_can_126:.4f}, Standard Error: {stderr_can_126:.4f}, P_value: {p_value_can_126:.4f}")
+```
+
+```{python}
+# get slope for Cesm SSP126 from 2015-2100
+model_data = cesm_annual_mean_126
+new_data = model_data.sel(year=slice(2015, 2100))
+slope_can_126, intercept_can_126, r_value_can_126, p_value_can_126, stderr_can_126 = stats.linregress(new_data.year.values, new_data.values)
+
+print(f"CESM SSP 126: Period Slope (2015-2100): {slope_can_126:.4f}, Standard Error: {stderr_can_126:.4f}, P_value: {p_value_can_126:.4f}")
+```
+
+```{python}
+# get slope for Cesm SSP126 from 2015-2100
+model_data = cesm_annual_mean_370
+new_data = model_data.sel(year=slice(2015, 2100))
+slope_can_126, intercept_can_126, r_value_can_126, p_value_can_126, stderr_can_126 = stats.linregress(new_data.year.values, new_data.values)
+
+print(f"CESM SSP 370: Period Slope (2015-2100): {slope_can_126:.4f}, Standard Error: {stderr_can_126:.4f}, P_value: {p_value_can_126:.4f}")
+```
+
 ```{python}
 ### Fit a trend line for two different time periods
 model_data = cesm_annual_mean_370
@@ -489,6 +526,7 @@ else:
     print(f"\nResult: The difference between the slopes is not statistically significant at alpha={alpha} (p={p_value_diff:.15f}).")
 ```
 
+
 ### Discussion
 
 3. a: Describe, in markdown text, the climate of that region in general terms. What is it like? Is it a forest, a desert, polar, tropical,urban, etc? What types of climate change impacts might you expect there?
@@ -507,12 +545,10 @@ else:
 
 ## Additional task from ESM 237
 
-
 ```{python}
 from scipy.stats import linregress
 hw2_data = model_data.sel(year=slice(2015, 2100))
 years = hw2_data.year
-
 ```
 
 ```{python}
@@ -535,4 +571,3 @@ r_value
 ```{python}
 p_value
 ```
-
