@@ -484,9 +484,9 @@ print(f"P-value for difference: {p_value_diff:.4f}")
 # --- Interpretation ---
 alpha = 0.05 # Significance level
 if p_value_diff < alpha:
-    print(f"\nResult: The difference between the slopes is statistically significant at alpha={alpha} (p={p_value_diff:.4f}).")
+    print(f"\nResult: The difference between the slopes is statistically significant at alpha={alpha} (p={p_value_diff:.15f}).")
 else:
-    print(f"\nResult: The difference between the slopes is not statistically significant at alpha={alpha} (p={p_value_diff:.4f}).")
+    print(f"\nResult: The difference between the slopes is not statistically significant at alpha={alpha} (p={p_value_diff:.15f}).")
 ```
 
 ### Discussion
@@ -504,3 +504,35 @@ else:
 - The analysis comparing historical (1850-2015) and projected future temperature trends for Nepal reveals a clear and statistically significant acceleration of warming across all examined scenarios and models. Both the CanESM5 and CESM2 climate models show that the rate of warming projected for the 21st century under both the low-emissions SSP126 and the medium-to-high emissions SSP370 scenarios is significantly steeper than the trend observed during the historical period. This indicates that the warming Nepal has already experienced is expected to intensify considerably in the coming decades. While both future scenarios depict accelerated warming compared to the past, the magnitude of this acceleration is substantially greater under the SSP370 scenario in both models, leading to a much faster temperature increase and a significantly warmer end-of-century outcome compared to the SSP126 pathway.
 
 - The consistency between CanESM5 and CESM2 in projecting this accelerated warming relative to the historical baseline strengthens confidence in these findings. For Nepal, this means that the environmental and societal challenges associated with rising temperatures are set to escalate. Compared to historical conditions, future Nepal under either scenario faces amplified risks related to glacial melt and water resource variability, shifts in agricultural zones, altered monsoon dynamics, and increased stress on its unique mountain ecosystems. However, the severity of these impacts diverges sharply between the scenarios: the SSP370 pathway points towards far more drastic and potentially unmanageable changes compared to the historical baseline and the SSP126 scenario, emphasizing the critical difference global mitigation efforts make for Nepal's future climate and the adaptation burden it will face.
+
+## Additional task from ESM 237
+
+
+```{python}
+from scipy.stats import linregress
+hw2_data = model_data.sel(year=slice(2015, 2100))
+years = hw2_data.year
+
+```
+
+```{python}
+hw2_data
+```
+
+```{python}
+slope, intercept, r_value, p_value, std_err = linregress(years, hw2_data)
+trend_per_decade = slope * 10  # Convert °C/year to °C/decade
+```
+
+```{python}
+trend_per_decade
+```
+
+```{python}
+r_value
+```
+
+```{python}
+p_value
+```
+
